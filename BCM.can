@@ -1,0 +1,88 @@
+/*@!Encoding:1252*/
+includes
+{
+   
+  
+  
+}
+
+variables
+{
+ message 0x321 s1;
+ message 0x456 s2;
+ message 0x789 s3;
+  
+}
+on sysvar BCM::h_sw
+{
+  if(@BCM::h_sw==1)
+  {
+    s1.byte(0)=0x33;
+    s1.rtr=0;
+    s1.dlc=1;
+    output(s1);
+  }
+  else
+  {
+     s1.byte(0)=0x44;
+     s1.rtr=1;
+     s1.dlc=1;
+     output(s1);
+  }
+  
+}
+on sysvar BCM::dr_sw
+{
+    if(@BCM::dr_sw==1)
+    {
+      s2.byte(0)=0x11;
+      s2.rtr=0;
+      s2.dlc=1;
+      output(s2); 
+    }
+    else
+    {
+       s2.byte(0)=0x22;
+       s2.rtr=1;
+       s2.dlc=1;
+      output(s2);
+      
+    }
+ 
+}
+on sysvar BCM::ind_l_sw
+{
+    if(@BCM::ind_l_sw==1)
+    {
+      s3.byte(0)=0x55;
+      s3.rtr=0;
+      s3.dlc=1;
+      output(s3);
+    }
+    else
+    {
+      s3.byte(0)=0x66;
+      s3.rtr=1;
+      s3.dlc=1;
+      output(s3);
+    }
+}
+on sysvar BCM::ind_r_sw
+{
+    if(@BCM::ind_r_sw==1)
+    {
+      s3.byte(0)=0x77;
+      s3.rtr=0;
+      s3.dlc=1;
+      output(s3);
+    }
+    else
+    {
+      s3.byte(0)=0x88;
+      s3.rtr=1;
+      s3.dlc=1;
+      output(s3);
+    }
+ 
+}
+

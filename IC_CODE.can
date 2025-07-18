@@ -1,0 +1,39 @@
+/*@!Encoding:1252*/
+includes
+{
+  
+}
+
+variables
+{
+  
+}
+on message 0x456
+{
+  if((this.byte(0)>=0) && (this.byte(0)<=10))
+  {
+    @GEARNO::variey=this.byte(0);
+    @GEARNO::lcd=1;
+  }
+  else if((this.byte(0)>=11)&& (this.byte(0)<=20))
+  {
+     @GEARNO::variey=this.byte(0);
+    @GEARNO::lcd=2;
+  }
+   else if((this.byte(0)>=21)&& (this.byte(0)<=30))
+  {
+     @GEARNO::variey=this.byte(0);
+    @GEARNO::lcd=3;
+  }
+   else if((this.byte(0)>=31)&& (this.byte(0)<=50))
+  {
+     @GEARNO::variey=this.byte(0);
+    @GEARNO::lcd=4;
+  }
+   else if(this.byte(0)>=51)
+  {
+     @GEARNO::variey=this.byte(0);
+    @GEARNO::lcd=5;
+  }
+}
+

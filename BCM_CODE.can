@@ -1,0 +1,84 @@
+/*@!Encoding:1252*/
+includes
+{
+  
+}
+
+variables
+{
+  message 0x298 light;
+  message 0x123 door;
+  message 0x216 indi;
+}
+on sysvar HEADLIGHT::head_sw
+{
+  if(@HEADLIGHT::head_sw==1)
+  {
+    light.byte(0)=0xAA;
+    light.dlc=1;
+    light.rtr=0;
+    output(light);
+  }
+  else
+  {
+    light.byte(0)=0xBB;
+    light.dlc=1;
+    light.rtr=0;
+    output(light);
+  }
+}
+
+on sysvar HEADLIGHT::door_sw
+{
+  if(@HEADLIGHT::door_sw==1)
+  {
+    door.byte(0)=0xCC;
+    door.dlc=1;
+    door.rtr=0;
+    output(door);
+  }
+  else
+  {
+    door.byte(0)=0xDD;
+    door.dlc=1;
+    door.rtr=0;
+    output(door);
+  }
+}
+
+on sysvar HEADLIGHT::left_sw
+{
+  if(@HEADLIGHT::left_sw==1)
+  {
+    indi.byte(0)=0x99;
+    indi.dlc=1;
+    indi.rtr=0;
+    output(indi);
+  }
+  else
+  {
+    indi.byte(0)=0x88;
+    indi.dlc=1;
+    indi.rtr=0;
+    output(indi);
+    
+  }
+}
+ on sysvar HEADLIGHT::right_sw{
+  
+  if(@HEADLIGHT::right_sw==1)
+  {
+    indi.byte(0)=0x77;
+    indi.dlc=1;
+    indi.rtr=0;
+    output(indi);
+  }
+  else
+  {
+    indi.byte(0)=0x66;
+    indi.dlc=1;
+    indi.rtr=0;
+    output(indi);
+  }
+}
+

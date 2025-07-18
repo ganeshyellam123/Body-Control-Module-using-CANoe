@@ -1,0 +1,18 @@
+/*@!Encoding:1252*/
+includes
+{
+  
+}
+
+variables
+{
+  
+}
+on message 0x123
+{
+  if(this.byte(0)==0xCC)
+    @HEADLIGHT::door=1;
+  else
+    @HEADLIGHT::door=0;
+}
+

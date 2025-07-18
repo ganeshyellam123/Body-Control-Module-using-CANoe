@@ -1,0 +1,74 @@
+/*@!Encoding:1252*/
+includes
+{
+  
+}
+
+variables
+{
+  msTimer t1;
+  msTimer t2;
+}
+on timer t1{
+  int flag=0;
+  if(flag==0)
+  {
+    @HEADLIGHT::left_led=0;
+    flag=1;
+  }
+  else
+  {
+    @HEADLIGHT::left_led=1;
+    flag=0;
+  }
+  setTimer(t1,100);
+}
+on timer t2{
+  int flag1=0;
+  if(flag1==0)
+  {
+    @HEADLIGHT::right_led=0;
+    flag1=1;
+  }
+  else
+  {
+    @HEADLIGHT::right_led=1;
+    flag1=0;
+  }
+  setTimer(t2,100);
+}
+on message 0x298
+{
+  if(this.byte(0)==0xAA)
+    @HEADLIGHT::head_led=1;
+  else
+    @HEADLIGHT::head_led=0;
+}
+on message 0x216
+{
+  if(this.byte(0)==0X99)
+  {
+    cancelTimer(t2);
+    @HEADLIGHT::right_led=0;
+    @HEADLIGHT::right_sw=0;
+    @HEADLIGHT::left_led=1;
+    setTimer(t1,100);
+  }
+  else if(this.byte(0)==0x88){
+    @HEADLIGHT::left_led=0;
+    cancelTimer(t1);
+  }
+  else if(this.byte(0)==0x77)
+  {
+    cancelTimer(t1);
+    @HEADLIGHT::left_led=0;
+    @HEADLIGHT::left_sw=0;
+    @HEADLIGHT::right_led=1;
+    setTimer(t2,100);
+  }
+  else if(this.byte(0)==0x66)
+  {
+    @HEADLIGHT::right_led=0;
+    cancelTimer(t2);
+  }
+}

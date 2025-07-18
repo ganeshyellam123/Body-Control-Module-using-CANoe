@@ -1,0 +1,19 @@
+/*@!Encoding:1252*/
+includes
+{
+  
+}
+
+variables
+{
+ message 0x456 speed;
+}
+on sysvar GEARNO::speed1
+{
+    speed.rtr=0;
+    speed.dlc=1;
+    speed.byte(0)=@GEARNO::speed1;
+    output(speed);
+  
+}
+
